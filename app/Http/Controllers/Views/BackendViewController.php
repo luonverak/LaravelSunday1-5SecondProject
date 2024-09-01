@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 
 class BackendViewController extends Controller
 {
-    public function index(){
-        return view("backend.backend_master");
+    public function index()
+    {
+        return view("backend.index");
+    }
+    public function category()
+    {
+        return view("backend.category");
     }
 }

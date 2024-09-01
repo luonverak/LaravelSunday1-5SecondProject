@@ -7,12 +7,32 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('/asset/bootstrap/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('/asset/css/admin.css') }}">
     <script src="{{ asset('/asset/bootstrap/js/bootstrap.js') }}"></script>
     <script src="{{ asset('/asset/js/jquery.js') }}"></script>
+
 </head>
 
 <body>
-<h1 class="text-danger">Hello </h1>
+    <div class="m-0 p-0 row admin-dashboad">
+        <div class="col-2 bg-dark">
+            <div class="page-logo admin-menu mt-4 mb-5">
+                <a class="admin-menu" href="/admin">
+                    <img class="rounded-circle me-3" src="{{ asset('/asset/icons/logo.png') }}" alt="">
+                    <p class="m-0 p-0 text-white fs-4">Blog Website</p>
+                </a>
+            </div>
+            <div class="admin-menu">
+                <a class="admin-menu" href="/admin/category">
+                    <img class="menu-icon me-2" src="{{ asset('/asset/icons/categories.png') }}" alt="">
+                    <p class="m-0 p-0 text-white ">Category</p>
+                </a>
+            </div>
+        </div>
+        <div class="col-10">
+            @yield('admin-content')
+        </div>
+    </div>
 </body>
 
 </html>
