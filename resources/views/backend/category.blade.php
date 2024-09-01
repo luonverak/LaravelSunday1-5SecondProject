@@ -1,4 +1,7 @@
 @extends('backend.backend_master')
 @section('admin-content')
-    <h1>Category Panel</h1>
+    <button class="btn btn-primary m-2">
+        <i class="fa-solid fa-plus"></i>
+        Add Category
+    </button>
 @endsection

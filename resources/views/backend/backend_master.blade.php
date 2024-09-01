@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('/asset/css/admin.css') }}">
     <script src="{{ asset('/asset/bootstrap/js/bootstrap.js') }}"></script>
     <script src="{{ asset('/asset/js/jquery.js') }}"></script>
-
+    <link rel="stylesheet" href="{{ asset('/asset/fontawesome/css/all.css') }}">
 </head>
 
 <body>
