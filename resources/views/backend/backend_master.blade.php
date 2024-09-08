@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('/asset/bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('/asset/css/admin.css') }}">
     <script src="{{ asset('/asset/bootstrap/js/bootstrap.js') }}"></script>
     <script src="{{ asset('/asset/js/jquery.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('/asset/fontawesome/css/all.css') }}">
-
 </head>
 
 <body>
