@@ -11,6 +11,7 @@
     <script src="{{ asset('/asset/bootstrap/js/bootstrap.js') }}"></script>
     <script src="{{ asset('/asset/js/jquery.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('/asset/fontawesome/css/all.css') }}">
+
 </head>
 
 <body>
@@ -34,5 +35,7 @@
         </div>
     </div>
 </body>
+
+<script src="{{asset("/asset/js/admin.js")}}"></script>
 
 </html>
