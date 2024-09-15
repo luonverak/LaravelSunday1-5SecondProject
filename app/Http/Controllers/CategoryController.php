@@ -44,4 +44,25 @@ class CategoryController extends Controller
             throw $th;
         }
     }
+    public function getCategory()
+    {
+        try {
+            $category = CategoryModel::select([
+                "id",
+                "name",
+                "description",
+                "logo"
+            ])->get();
+            $category->map(function ($q) {
+                return $q->logo = $q->logo ?: emptyImage();
+            });
+            return response()->json([
+                "status" => "success",
+                "msg" => "Success",
+                "records" => $category
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }

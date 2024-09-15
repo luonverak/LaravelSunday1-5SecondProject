@@ -24,3 +24,10 @@ a{
     width: 34px;
     height: 34px;;
 }
+.category{
+    height: 180px;
+}
+.category-logo{
+    width: 100px;
+    height: 100px;
+}

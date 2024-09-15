@@ -14,6 +14,7 @@ $(document).on("click", "button.open-category-modal", function () {
     }
 
     addCategory(name.val(), description, logo);
+    
 });
 function addCategory(name, description, logo) {
 
@@ -36,6 +37,7 @@ function addCategory(name, description, logo) {
         },
         success: function (response) {
             // when send request ready
+            $("div.category-modal").modal("hide");
         },
         error: function (xhr, status, error) {
             // when request ready but error 
