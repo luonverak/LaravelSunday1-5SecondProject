@@ -23,7 +23,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" id="accept-category" class="btn btn-primary accept-save-category">Save</button>
+                <button type="button" id="accept-category" data-id="" class="btn btn-primary accept-save-category">Save</button>
             </div>
         </div>
     </div>

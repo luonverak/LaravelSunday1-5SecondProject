@@ -34,7 +34,7 @@ class CategoryController extends Controller
             $category->logo = $fileName;
             $category->save(); // insert data into database
 
-            $category->logo =  $category->logo ?: emptyImage();
+            $category->logo = $category->logo ?: emptyImage();
 
             if ($category) {
                 return response()->json([
@@ -64,6 +64,56 @@ class CategoryController extends Controller
                 "msg" => "Success",
                 "records" => $category
             ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function editCategory(Request $request)
+    {
+        try {
+            if (!$request->has("name") || $request->name == null) {
+                return response()->json([
+                    "status" => "failed",
+                    "msg" => "Something went wrong."
+                ]);
+            }
+            $id = Decryption($request->id);
+
+            $name = $request->name;
+            $description = $request->description;
+            $fileName = "";
+
+            $logo = $request->file("logo");
+            if ($logo) {
+                $fileName = date("dmyhis") . '-' . $logo->getClientOriginalName();
+                $logo->move("asset/images", $fileName);
+                $fileName = url("asset/images/$fileName");
+            }
+
+            $category = CategoryModel::where("id", $id)->first();
+            
+            if (!$category) {
+                return response()->json([
+                    "status" => "failed",
+                    "msg" => "Something went wrong."
+                ]);
+            }
+
+            $category->name = $name;
+            $category->description = $description ?: $category->description;
+            $category->logo = $fileName ?: $category->logo;
+            $category->save(); // update data into database
+
+            $category->logo = $category->logo ?: emptyImage();
+
+            if ($category) {
+                return response()->json([
+                    "status" => "success",
+                    "msg" => "Category added success.",
+                    "record" => $category
+                ]);
+            }
         } catch (\Throwable $th) {
             throw $th;
         }
