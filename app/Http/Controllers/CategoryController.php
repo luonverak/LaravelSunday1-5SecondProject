@@ -34,10 +34,13 @@ class CategoryController extends Controller
             $category->logo = $fileName;
             $category->save(); // insert data into database
 
+            $category->logo =  $category->logo ?: emptyImage();
+
             if ($category) {
                 return response()->json([
                     "status" => "success",
-                    "msg" => "Category added success."
+                    "msg" => "Category added success.",
+                    "record" => $category
                 ]);
             }
         } catch (\Throwable $th) {

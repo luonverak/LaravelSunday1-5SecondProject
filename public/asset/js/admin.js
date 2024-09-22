@@ -14,8 +14,11 @@ $(document).on("click", "button.open-category-modal", function () {
     }
 
     addCategory(name.val(), description, logo);
-    
+
+}).on("click", "span.open-edit-category", function () {
+    $("div.category-modal").modal("show");
 });
+
 function addCategory(name, description, logo) {
 
     let form = new FormData();
@@ -37,10 +40,30 @@ function addCategory(name, description, logo) {
         },
         success: function (response) {
             // when send request ready
+            if (response.status != "success") {
+                return;
+            }
             $("div.category-modal").modal("hide");
+            let category = getCategory(response.record);
+            $("div.list-category").append(category);
         },
         error: function (xhr, status, error) {
             // when request ready but error 
         }
     });
+}
+
+function getCategory(category) {
+    return ` <div class="col-3 p-2 position-relative d-flex justify-content-end">
+                <div class=" w-100 h-100 category bg-secondary bg-opacity-50 rounded m-2 d-flex flex-column align-items-center justify-content-center">
+                    <div class="category-logo">
+                        <img class="w-100 h-100 object-fit-contain  rounded-circle" src="${category.logo}" alt="">
+                    </div>
+                    <p class="text-white mt-2">${category.name}</p>
+                </div>
+                <span class="position-absolute open-edit-category p-2" role="button" >
+                    <img src="/asset/icons/edit.svg" alt="">
+                </span>
+            </div>
+            `;
 }
