@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --black: #222222;
+}
+p{
+    font-size: 18px;
+}
+ul li{
+    list-style: none;
+}
+a{
+    text-decoration: none !important;
+    font-size: 20px;
+    color: var(--black) !important;
+    font-weight: 500;
+}
+.header{
+    height: 100px;
+}
+.page-logo{
+    width: 70px;
+    height: 70px;
+}
+.content-center{
+    display: flex;
+    justify-content: center;
+}
+.algin-content-center{
+    display: flex;
+    align-items: center;
+}

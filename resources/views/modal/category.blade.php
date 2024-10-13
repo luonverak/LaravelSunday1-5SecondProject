@@ -6,20 +6,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="post" enctype="multipart/form-data">
-                    <div class="form-group mb-2">
-                        <label for="">Name</label>
-                        <input type="text" class="form-control" id="name">
-                    </div>
-                    <div class="form-group mb-2">
-                        <label for="">Description</label>
-                        <textarea type="text" class="form-control" id="description"></textarea>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label for="">Logo</label>
-                        <input type="file" class="form-control" id="logo">
-                    </div>
-                </form>
+                <div class="form-group mb-2">
+                    <label for="">Name</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="">Description</label>
+                    <textarea type="text" class="form-control" id="description"></textarea>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="">Logo</label>
+                    <input type="file" class="form-control" id="logo">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>

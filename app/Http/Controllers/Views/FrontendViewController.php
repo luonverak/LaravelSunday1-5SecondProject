@@ -7,5 +7,7 @@ use Illuminate\Http\Request;
 
 class FrontendViewController extends Controller
 {
-    //
+    public function index(){
+        return view("frontend.frontend_master");
+    }
 }

@@ -29,12 +29,19 @@
                     <p class="m-0 p-0 text-white ">Category</p>
                 </a>
             </div>
+            <div class="admin-menu mt-3">
+                <a class="admin-menu" href="/admin/category">
+                    <img class="menu-icon me-2" src="{{ asset('/asset/icons/categories.png') }}" alt="">
+                    <p class="m-0 p-0 text-white ">Content</p>
+                </a>
+            </div>
         </div>
         <div class="col-10">
             @yield('admin-content')
         </div>
     </div>
 </body>
+
 @yield('script')
 <script src="{{ asset('/asset/js/admin.js') }}"></script>
 
