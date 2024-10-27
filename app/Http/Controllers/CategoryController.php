@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\AuthMiddleware;
 use App\Models\CategoryModel;
 use Illuminate\Http\Request;
 
@@ -92,7 +93,7 @@ class CategoryController extends Controller
             }
 
             $category = CategoryModel::where("id", $id)->first();
-            
+
             if (!$category) {
                 return response()->json([
                     "status" => "failed",

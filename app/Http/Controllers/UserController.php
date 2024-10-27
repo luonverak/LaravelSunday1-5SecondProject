@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -10,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
+
     public function register(Request $request)
     {
         try {
@@ -57,26 +59,12 @@ class UserController extends Controller
     public function login(Request $request)
     {
         try {
-            // if (!$request->has("email") || $request->email == null) {
-            //     return response()->json([
-            //         "status" => "failed",
-            //         "msg" => "Email name is requried"
-            //     ]);
-            // }
-
-            // if (!$request->has("password") || $request->password == null) {
-            //     return response()->json([
-            //         "status" => "failed",
-            //         "msg" => "Password name is requried"
-            //     ]);
-            // }
-
             $email = $request->email;
             $password = $request->password;
 
             $credentials = $request->only(["email", "password"]);
 
-            if (!Auth::attempt($credentials)) {
+            if (! $token = Auth::attempt($credentials)) {
                 return response()->json(
                     [
                         "status" => "failed",
@@ -95,6 +83,7 @@ class UserController extends Controller
                     ],
                 );
             }
+
             if (!Hash::check($password, $user->getAuthPassword())) {
                 return response()->json(
                     [
@@ -102,19 +91,21 @@ class UserController extends Controller
                         "msg" => "Something wrong"
                     ],
                 );
-            } else {
-                if($user->tokens()->exists()){
-                    $user->tokens()->delete();
-                }
-                $token = $user->createToken("USER_TOKEN")->plainTextToken;
-                $cookie = cookie("jwt", $token, 1);
-                return response()->json([
-                    "status" => "success",
-                    "msg" => "Account login success",
-                    "user" => $user,
-                    "token" => $token
-                ])->withCookie($cookie);
             }
+
+            $token = bin2hex(openssl_random_pseudo_bytes(20));
+            $userToken = new UserToken();
+            $userToken->token = $token;
+            $userToken->user_id = $user->id;
+            $userToken->save();
+
+            return response()->json([
+                "status" => "success",
+                "msg" => "Account login success",
+                "user" => Auth::user(),
+                "token" => $token
+            ]);
+
         } catch (\Throwable $th) {
             throw $th;
         }
