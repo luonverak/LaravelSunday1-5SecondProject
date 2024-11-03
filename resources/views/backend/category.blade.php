@@ -23,6 +23,9 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
+                data:{
+                    token: userToken
+                },
                 beforeSend: function() {
                     // before add data success
                 },

@@ -10,5 +10,7 @@ class CategoryModel extends Model
     use HasFactory;
     protected $table = "category";
 
-    
+    public function content(){
+        return $this->hasMany(ContentModel::class,"category_id");
+    }
 }

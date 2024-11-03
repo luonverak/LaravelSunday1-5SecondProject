@@ -1,3 +1,4 @@
+
 $(document).on("click", "button.open-category-modal", function () {
 
     let categoryModal = $("div.category-modal");
@@ -62,6 +63,7 @@ function addCategory(name, description, logo) {
     form.append("name", name);
     form.append("description", description);
     form.append("logo", logo);
+    form.append("token", userToken);
 
     $.ajax({
         type: "POST",
@@ -97,7 +99,8 @@ function editCategory(name, description, logo, id) {
     form.append("description", description);
     form.append("logo", logo);
     form.append("id", id);
-
+    form.append("token", userToken);
+    
     $.ajax({
         type: "POST",
         url: "/api/admin/edit-category",
