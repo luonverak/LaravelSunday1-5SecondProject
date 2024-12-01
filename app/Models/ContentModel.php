@@ -11,11 +11,12 @@ class ContentModel extends Model
     protected $table = "content";
 
     public function category(){
-        return $this->belongsTo(CategoryModel::class,"id");
+        return $this->belongsTo(CategoryModel::class,"category_id");
     }
 
     public function user(){
-        return $this->belongsTo(User::class,"id");
+        return $this->belongsTo(User::class,"user_id");
     }
 
 }
+
