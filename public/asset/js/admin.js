@@ -55,7 +55,52 @@ $(document).on("click", "button.open-category-modal", function () {
     }
 
     editCategory(name.val(), description, logo, id);
+}).on("click", "button.open-content-modal", function () {
+    initCategory();
+    $("div.content-modal").modal("show");
+}).on("click", ".accept-save-content", function () {
+    let _modal = $("div.content-modal");
+    let name = _modal.find("input#name").val();
+    let description = _modal.find("textarea#description").val();
+    let logo = _modal.find("input#logo")[0].files[0];
+    let category = _modal.find("select.list-category-content :selected").attr("data-id");
+    
+    addContent(name,description,logo,category);
 });
+
+function addContent(name,description,logo,category) {  
+    
+    let form = new FormData();
+    form.append("title", name);
+    form.append("description", description);
+    form.append("logo", logo);
+    form.append("cat_id",category);
+    form.append("token", userToken);
+
+    $.ajax({
+        type: "POST",
+        url: "/api/admin/add-content",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: form,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+            // before add data success
+        },
+        success: function (response) {
+            // when send request ready
+            if (response.status != "success") {
+                return;
+            }
+            
+        },
+        error: function (xhr, status, error) {
+            // when request ready but error 
+        }
+    });
+}
 
 function addCategory(name, description, logo) {
 
@@ -92,6 +137,40 @@ function addCategory(name, description, logo) {
     });
 }
 
+function initCategory() {
+    $.ajax({
+        type: "POST",
+        url: "/api/admin/get-category",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            token: userToken
+        },
+        beforeSend: function () {
+            // before add data success
+        },
+        success: function (response) {
+
+            if (response.status != "success") {
+                // Message response 
+                return;
+            }
+            let records = response.records;
+            let category = '';
+            records.forEach(record => {
+                category += `<option data-id="${record.id}">${record.name}</option>`;
+            });
+
+            $("select.list-category-content").html(category);
+
+        },
+        error: function (xhr, status, error) {
+            // when request ready but error 
+        }
+    });
+}
+
 function editCategory(name, description, logo, id) {
 
     let form = new FormData();
@@ -100,7 +179,7 @@ function editCategory(name, description, logo, id) {
     form.append("logo", logo);
     form.append("id", id);
     form.append("token", userToken);
-    
+
     $.ajax({
         type: "POST",
         url: "/api/admin/edit-category",

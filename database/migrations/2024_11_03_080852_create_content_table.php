@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text("description")->nullable();
             $table->string("thumbnail")->nullable();
             $table->tinyInteger("view")->default(0);
+            $table->string("status",55)->default("public");
             $table->integer("category_id");
             $table->integer("user_id"); 
             $table->timestamps();

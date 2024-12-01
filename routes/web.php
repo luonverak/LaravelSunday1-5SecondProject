@@ -15,6 +15,7 @@ Route::group(["prefix" => "admin"], function () {
 
         Route::get("/", [BackendViewController::class, "index"]);
         Route::get("/category", [BackendViewController::class, "category"]);
+        Route::get("/content", [BackendViewController::class, "content"]);
 
     });
 
